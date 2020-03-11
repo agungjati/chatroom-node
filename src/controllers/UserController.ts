@@ -1,31 +1,37 @@
-import {Controller, Param, Body, Get, Post, Put, Delete} from "routing-controllers";
+import {Controller, Param, Body, Get, Post, Put, Delete, JsonController, QueryParams} from "routing-controllers";
+import { UserRepository } from '../repository/UserRepository';
+import { UserParam } from "../parameters/userParam";
 
-@Controller()
+@JsonController()
 export class UserController {
 
-    @Get("/users")
-    getAll() {
-       return "This action returns all users";
+   private _userRepo :UserRepository = new UserRepository();
+
+   //  @Get("/users")
+   //  getAll() {
+   //     return "This action returns all users";
+   //  }
+
+    @Get("/user")
+    async getOne(@QueryParams() {email, password} :any) {
+       const isValidUser = await this._userRepo.isValidUser(email, password);
+       return isValidUser;
     }
 
-    @Get("/users/:id")
-    getOne(@Param("id") id: number) {
-       return "This action returns user #" + id;
+    @Post("/user")
+    async post(@Body() user: UserParam) {
+       const id = await this._userRepo.Save(user);
+       return { id };
     }
 
-    @Post("/users")
-    post(@Body() user: any) {
-       return "Saving user...";
-    }
+   //  @Put("/users/:id")
+   //  put(@Param("id") id: number, @Body() user: any) {
+   //     return "Updating a user...";
+   //  }
 
-    @Put("/users/:id")
-    put(@Param("id") id: number, @Body() user: any) {
-       return "Updating a user...";
-    }
-
-    @Delete("/users/:id")
-    remove(@Param("id") id: number) {
-       return "Removing user...";
-    }
+   //  @Delete("/users/:id")
+   //  remove(@Param("id") id: number) {
+   //     return "Removing user...";
+   //  }
 
 }
