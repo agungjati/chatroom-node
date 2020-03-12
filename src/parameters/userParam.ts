@@ -1,6 +1,7 @@
 import { IsEmail } from "class-validator";
 
 export class UserParam {
+    userId: string = ""
     firstName :string = "";
     lastName: string ="";
     email: string = "";

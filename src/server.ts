@@ -1,11 +1,14 @@
-import "reflect-metadata"; // this shim is required
+import "reflect-metadata";
 import {createExpressServer} from "routing-controllers";
 import { UserController } from "./controllers/UserController";
 import './repository/config'
-// creates express app, registers all controller routes and returns you express app instance
+import { ChatController } from "./controllers/ChatController";
+
 const app = createExpressServer({
-   controllers: [UserController] // we specify controllers we want to use
+   controllers: [
+      UserController,
+      ChatController
+   ] 
 });
 
-// run express application on port 3000
 app.listen(3000);

@@ -1,4 +1,4 @@
-import {Controller, Param, Body, Get, Post, Put, Delete, JsonController, QueryParams} from "routing-controllers";
+import {Controller, Param, Body, Get, Post, Put, Delete, JsonController, QueryParams, Res, Header} from "routing-controllers";
 import { UserRepository } from '../repository/UserRepository';
 import { UserParam } from "../parameters/userParam";
 
@@ -14,8 +14,9 @@ export class UserController {
 
     @Get("/user")
     async getOne(@QueryParams() {email, password} :any) {
-       const isValidUser = await this._userRepo.isValidUser(email, password);
-       return isValidUser;
+       const user = await this._userRepo.isValidUser(email, password);
+       return user;
+
     }
 
     @Post("/user")
