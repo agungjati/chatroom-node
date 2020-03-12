@@ -1,6 +1,8 @@
 import Mongoose, { Schema } from 'mongoose'
 
 const chatSchema = new Mongoose.Schema({
+  name: String,
+  type: String,
   members: [{
     userId: Schema.Types.ObjectId,
     firstName: String,
