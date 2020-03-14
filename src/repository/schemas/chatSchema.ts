@@ -2,20 +2,18 @@ import Mongoose, { Schema } from 'mongoose'
 
 const chatSchema = new Mongoose.Schema({
   name: String,
-  type: String,
+  createdAt: Date,
   members: [{
-    userId: Schema.Types.ObjectId,
-    firstName: String,
-    lastName: String,
-    email: String,
-    telephone: String
+    username: {
+      type: String,
+      unique: true
+    },
+    _id: false
   }],
   chats: [{
-    id: Schema.Types.ObjectId,
-    userId: Schema.Types.ObjectId,
-    fullName: String,
+    username: String,
     message: String,
-    CreatedAt: Date
+    createdAt: Date
   }]
   });
 
