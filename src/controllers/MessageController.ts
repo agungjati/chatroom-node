@@ -1,0 +1,22 @@
+import {OnConnect, SocketController, ConnectedSocket, OnDisconnect, MessageBody, OnMessage} from "socket-controllers";
+
+@SocketController()
+export class MessageController {
+
+    @OnConnect()
+    connection(@ConnectedSocket() socket: any) {
+        console.log("client connected");
+    }
+
+    @OnDisconnect()
+    disconnect(@ConnectedSocket() socket: any) {
+        console.log("client disconnected");
+    }
+
+    @OnMessage("save")
+    save(@ConnectedSocket() socket: any, @MessageBody() message: any) {
+        console.log("received server:", message);
+        socket.emit("message_saved", message);
+    }
+
+}

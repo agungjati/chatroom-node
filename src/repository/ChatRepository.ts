@@ -20,8 +20,12 @@ export class ChatRepository {
             return {
                 id: res._id.toString(),
                 name: res.name,
-                members: res.members,
-                chats: res.chats
+                members: res.members.map((x :any) => (x.username)),
+                chats: res.chats.map((x :any) => ({
+                    username: x.username,
+                    message: x.message,
+                    createdAt: x.createdAt
+                }))
             };
 
         } catch (err) {
