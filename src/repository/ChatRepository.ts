@@ -1,6 +1,6 @@
 import Chat from './schemas/chatSchema';
 import { UserParam } from '../parameters/userParam';
-import Mongoose from 'mongoose';
+import moment from 'moment';
 import { addMessageParam } from '../parameters/chatroomParam';
 
 export class ChatRepository {
@@ -24,7 +24,7 @@ export class ChatRepository {
                 chats: res.chats.map((x :any) => ({
                     username: x.username,
                     message: x.message,
-                    createdAt: x.createdAt
+                    createdAt: moment(x.createdAt).format("DD-MM-YYYY HH:MM")
                 }))
             };
 
@@ -46,7 +46,6 @@ export class ChatRepository {
 
     public async AddMessage(messageParam: addMessageParam): Promise<void> {
         const { id, username, message } = messageParam
-        console.log("req")
         await Chat.updateOne(
             { "_id": id },
             {
