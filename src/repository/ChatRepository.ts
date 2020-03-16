@@ -1,5 +1,4 @@
 import Chat from './schemas/chatSchema';
-import { UserParam } from '../parameters/userParam';
 import moment from 'moment';
 import { addMessageParam } from '../parameters/chatroomParam';
 

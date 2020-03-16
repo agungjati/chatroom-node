@@ -1,4 +1,4 @@
-import {  Body, Get, Post, Put, Delete, JsonController, QueryParams, Res, Header, UseBefore, Middleware, Req, Param} from "routing-controllers";
+import {  Body, Get, Post, JsonController, Param} from "routing-controllers";
 import { ChatRepository } from '../repository/ChatRepository';
 import { chatroomParam, addMessageParam } from "../parameters/chatroomParam";
 
